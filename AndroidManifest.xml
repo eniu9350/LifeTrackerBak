@@ -19,6 +19,14 @@
 			</intent-filter>
 
 		</activity>
+		<activity android:name=".activities.NewTargetActivity">
+			<intent-filter>
+				<action
+					android:name="com.hexun.eniu.lifetracker.intent.action.NewTargetActivity" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+
+		</activity>
 
 	</application>
 </manifest>

@@ -4,7 +4,9 @@ import java.util.Arrays;
 
 import android.R;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -43,16 +45,21 @@ public class TargetsActivity extends Activity {
 			LinearLayout ll = new LinearLayout(this);
 			ll.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
 					LayoutParams.WRAP_CONTENT));
-			
+
 			TextView tv = new TextView(this);
 			tv.setText(targets[i].getName());
-			
-			ImageButton btn = new ImageButton(this);
-			btn.setImageResource(R.drawable.btn_default);
-			
-			
+
+			// button1: start,resume/pause
+			ImageButton btToggle = new ImageButton(this);
+			btToggle.setImageResource(R.drawable.btn_default);
+
+			// button2: stop
+			ImageButton btStop = new ImageButton(this);
+			btStop.setImageResource(R.drawable.btn_default);
+
 			ll.addView(tv);
-			ll.addView(btn);
+			ll.addView(btToggle);
+			ll.addView(btStop);
 
 			targetContainers[i] = ll;
 			mainContainer.addView(ll);
@@ -72,4 +79,16 @@ public class TargetsActivity extends Activity {
 		// setContentView(R.layout.main);
 	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		super.onOptionsItemSelected(item);
+
+		if (item.getItemId() == 1) {
+			Intent intent = new Intent(this, NewTargetActivity.class);
+			startActivity(intent);
+
+		}
+
+		return true;
+	}
 }
