@@ -32,7 +32,7 @@ public class TargetsActivity extends Activity {
 		targets[1] = target1;
 
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
@@ -93,6 +93,40 @@ public class TargetsActivity extends Activity {
 		// tv.setText("www");
 		// setContentView(tv);
 		// setContentView(R.layout.main);
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		String targetName = data.getStringExtra("nameOfNewTarget");
+		
+		{
+			LinearLayout ll = new LinearLayout(this);
+			ll.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
+					LayoutParams.WRAP_CONTENT));
+
+			TextView tv = new TextView(this);
+			tv.setText(targetName);
+
+			// button1: start,resume/pause
+			ImageButton btToggle = new ImageButton(this);
+			btToggle.setImageResource(R.drawable.btn_default);
+
+			// button2: stop
+			ImageButton btStop = new ImageButton(this);
+			btStop.setImageResource(R.drawable.btn_default);
+
+			ll.addView(tv);
+			ll.addView(btToggle);
+			ll.addView(btStop);
+
+			targetContainers[count-1] = ll;
+			count++;
+			mainContainer.addView(ll);
+		}
+		
+		
 	}
 
 	@Override
