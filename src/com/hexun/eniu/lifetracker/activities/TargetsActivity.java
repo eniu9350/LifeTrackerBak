@@ -1,14 +1,19 @@
 package com.hexun.eniu.lifetracker.activities;
 
 import java.util.Arrays;
+import java.util.Date;
 
 import android.R;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,19 +25,13 @@ public class TargetsActivity extends Activity {
 
 	public static final int MAX_TARGET_COUNT = 20;
 	private int count = 0; // mmm:temp
-	private Target targets[];
+	private final Target targets[];
 
 	private LinearLayout mainContainer;
 	private LinearLayout targetContainers[];
 
 	{
 		targets = new Target[MAX_TARGET_COUNT];
-		//		
-		// Target target0 = new Target("t1");
-		// Target target1 = new Target("t2");
-		// targets[0] = target0;
-		// targets[1] = target1;
-
 	}
 
 	@Override
@@ -56,26 +55,7 @@ public class TargetsActivity extends Activity {
 		mainContainer.setLayoutParams(new LayoutParams(
 				LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 		mainContainer.setOrientation(LinearLayout.VERTICAL);
-		/*
-		 * int i; for (i = 0; i < count; i++) {
-		 * 
-		 * LinearLayout ll = new LinearLayout(this); ll.setLayoutParams(new
-		 * LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
-		 * 
-		 * TextView tv = new TextView(this); tv.setText(targets[i].getName());
-		 * 
-		 * // button1: start,resume/pause ImageButton btToggle = new
-		 * ImageButton(this); btToggle.setImageResource(R.drawable.btn_default);
-		 * 
-		 * // button2: stop ImageButton btStop = new ImageButton(this);
-		 * btStop.setImageResource(R.drawable.btn_default);
-		 * 
-		 * ll.addView(tv); ll.addView(btToggle); ll.addView(btStop);
-		 * 
-		 * targetContainers[i] = ll; mainContainer.addView(ll);
-		 * 
-		 * }
-		 */
+
 	}
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -97,6 +77,8 @@ public class TargetsActivity extends Activity {
 		String targetName = data.getStringExtra("nameOfNewTarget");
 
 		{
+			targets[count] = new Target(targetName);
+
 			Log.e("TargetsActivity", "onActivityResult 1, targetName="
 					+ targetName);
 			LinearLayout ll = new LinearLayout(this);
@@ -111,22 +93,101 @@ public class TargetsActivity extends Activity {
 			// button1: start,resume/pause
 			ImageButton btToggle = new ImageButton(this);
 			btToggle.setImageResource(R.drawable.btn_default);
+			btToggle.setTag(count);
+			btToggle.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					int id = (Integer) v.getTag();
+					Log.e("TargetsActivity", "toggle on click,id=" + id);
+					if (targets[id].getState() == Target.STATE_CREATED
+							|| targets[id].getState() == Target.STATE_PAUSED) {
+						targets[id].getStartTime().add(new Date());
+						Log.e("TargetsActivity", "new start time added: "
+								+ new Date().getTime());
+						targets[id].setState(Target.STATE_RUNNING);
+					} else if (targets[id].getState() == Target.STATE_RUNNING) {
+						targets[id].getEndTime().add(new Date());
+						targets[id].setState(Target.STATE_PAUSED);
+						Log.e("TargetsActivity", "new pause time added: "
+								+ new Date().getTime());
+					}
+					Log.e("TargetsActivity", "toggle on click end");
+				}
+			});
 
 			Log.e("TargetsActivity", "onActivityResult 3");
 
 			// button2: stop
 			ImageButton btStop = new ImageButton(this);
+			btStop.setTag(count);
 			btStop.setImageResource(R.drawable.btn_default);
+			btStop.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					/*
+					 * if (targets[count].getState() == Target.STATE_CREATED) {
+					 * 
+					 * }
+					 */
+					int id = (Integer) v.getTag();
+					targets[id].getEndTime().add(new Date());
+					targets[id].setState(Target.STATE_ENDED);
+
+					Log.e("TargetsActivity", "new end time added: "
+							+ new Date().toString());
+				}
+			});
 
 			Log.e("TargetsActivity", "onActivityResult 4");
+
+			// button3: show detail (debug)
+			ImageButton btDebug = new ImageButton(this);
+			btDebug.setTag(count);
+			btDebug.setImageResource(R.drawable.btn_default);
+			btDebug.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					String s;
+					int id = (Integer) v.getTag();
+					int i;
+					long sum = 0;
+					if (targets[id].getStartTime().size() > targets[id]
+							.getEndTime().size()) {
+						for (i = 0; i < targets[id].getEndTime().size(); i++) {
+							sum += targets[id].getEndTime().get(i).getTime()
+									- targets[id].getStartTime().get(i)
+											.getTime();
+						}
+						sum += new Date().getTime()
+								- targets[id].getStartTime().get(i).getTime();
+
+					} else {
+						for (i = 0; i < targets[id].getEndTime().size(); i++) {
+							sum += targets[id].getEndTime().get(i).getTime()
+									- targets[id].getStartTime().get(i)
+											.getTime();
+						}
+					}
+
+					new AlertDialog.Builder(TargetsActivity.this).setMessage(
+							String.valueOf(sum)).setTitle("total time")
+							.setCancelable(true).setNeutralButton(
+									android.R.string.cancel,
+									new DialogInterface.OnClickListener() {
+										public void onClick(
+												DialogInterface dialog,
+												int whichButton) {
+										}
+									}).show();
+
+				}
+			});
 
 			ll.addView(tv);
 			ll.addView(btToggle);
 			ll.addView(btStop);
+			ll.addView(btDebug);
 
-			targetContainers[count++] = ll;
-			//count++;
+			targetContainers[count] = ll;
 			mainContainer.addView(ll);
+			count++;
 		}
 
 	}
@@ -143,6 +204,20 @@ public class TargetsActivity extends Activity {
 			Intent intent = new Intent(this, NewTargetActivity.class);
 			startActivityForResult(intent, 1);
 
+		} else if (item.getItemId() == 2) {
+			String s = "";
+			for (int i = 0; i < targets[0].getStartTime().size(); i++) {
+				s += targets[0].getStartTime().get(i).toString() + ", ";
+			}
+
+			new AlertDialog.Builder(this).setMessage(s).setTitle("temp title")
+					.setCancelable(true).setNeutralButton(
+							android.R.string.cancel,
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int whichButton) {
+								}
+							}).show();
 		}
 
 		return true;
