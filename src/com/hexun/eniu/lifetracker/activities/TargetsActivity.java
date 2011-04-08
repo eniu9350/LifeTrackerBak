@@ -17,6 +17,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 import android.widget.TableLayout.LayoutParams;
 
 import com.hexun.eniu.lifetracker.entity.Target;
@@ -91,8 +92,11 @@ public class TargetsActivity extends Activity {
 			Log.e("TargetsActivity", "onActivityResult 2");
 
 			// button1: start,resume/pause
-			ImageButton btToggle = new ImageButton(this);
-			btToggle.setImageResource(R.drawable.btn_default);
+			ToggleButton  btToggle = new ToggleButton (this);
+			btToggle.setText("Ready");
+			btToggle.setTextOn("Running");
+			btToggle.setTextOff("Paused");
+			//btToggle.setImageResource(R.drawable.btn_default);
 			btToggle.setTag(count);
 			btToggle.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
