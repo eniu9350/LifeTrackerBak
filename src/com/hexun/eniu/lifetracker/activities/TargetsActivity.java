@@ -6,6 +6,7 @@ import android.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -30,6 +31,21 @@ public class TargetsActivity extends Activity {
 		targets[0] = target0;
 		targets[1] = target1;
 
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+
+		menu.add(0 // Group
+				, 1 // item id
+				, 0 // order
+				, "add target"); // title
+		menu.add(0, 2, 1, "...");
+		menu.add(0, 3, 2, "...");
+		// It is important to return true to see the menu
+
+		return true;
 	}
 
 	public void initTargetsLayout() {
