@@ -92,11 +92,11 @@ public class TargetsActivity extends Activity {
 			Log.e("TargetsActivity", "onActivityResult 2");
 
 			// button1: start,resume/pause
-			ToggleButton  btToggle = new ToggleButton (this);
+			ToggleButton btToggle = new ToggleButton(this);
 			btToggle.setText("Ready");
 			btToggle.setTextOn("Running");
 			btToggle.setTextOff("Paused");
-			//btToggle.setImageResource(R.drawable.btn_default);
+			// btToggle.setImageResource(R.drawable.btn_default);
 			btToggle.setTag(count);
 			btToggle.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
@@ -170,10 +170,12 @@ public class TargetsActivity extends Activity {
 						}
 					}
 
-					new AlertDialog.Builder(TargetsActivity.this).setMessage(
-							String.valueOf(sum)).setTitle("total time")
-							.setCancelable(true).setNeutralButton(
-									android.R.string.cancel,
+					String time = String.valueOf(sum / 3600000) + "h"
+							+ String.valueOf((sum % 3600000) / 60000) + "m"
+							+ String.valueOf((sum % 60000) / 1000) + "s";
+					new AlertDialog.Builder(TargetsActivity.this).setMessage(time)
+							.setTitle("total time").setCancelable(true)
+							.setNeutralButton(android.R.string.ok,
 									new DialogInterface.OnClickListener() {
 										public void onClick(
 												DialogInterface dialog,
