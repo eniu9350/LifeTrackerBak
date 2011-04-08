@@ -4,6 +4,7 @@ import android.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -20,7 +21,7 @@ public class NewTargetActivity extends Activity {
 		mainContainer = new LinearLayout(this);
 
 		// 1. name
-		EditText name = new EditText(this);
+		final EditText name = new EditText(this);
 		name.setText("enter target name here");
 
 		// 2. ok button
@@ -35,8 +36,12 @@ public class NewTargetActivity extends Activity {
 
 				// http://mobileorchard.com/android-app-development-using-intents-to-pass-data-and-return-results-between-activities/
 				Intent intent = new Intent();
-				intent.putExtra("nameOfNewTarget", "NewTarget111");
-				setResult(RESULT_OK, intent);
+				Log.e("NewTargetActivity, name = ", name.getText().toString());
+				String s = name.getText().toString();
+				// intent.putExtra("nameOfNewTarget", name.getText()); //why
+				// wrong???
+				intent.putExtra("nameOfNewTarget", s);
+				setResult(RESULT_OK, intent); // this will not return!
 				finish();
 
 			}
