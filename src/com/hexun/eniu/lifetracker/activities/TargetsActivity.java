@@ -3,7 +3,7 @@ package com.hexun.eniu.lifetracker.activities;
 import java.util.Arrays;
 import java.util.Date;
 
-import android.R;
+//import android.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 import android.widget.TableLayout.LayoutParams;
 
+import com.hexun.eniu.lifetracker.R;
 import com.hexun.eniu.lifetracker.entity.Target;
 
 public class TargetsActivity extends Activity {
@@ -75,9 +76,14 @@ public class TargetsActivity extends Activity {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		Log.e("TargetsActivity", "onActivityResult 0");
-		String targetName = data.getStringExtra("nameOfNewTarget");
+		
 
-		{
+		if (resultCode == RESULT_CANCELED) {
+
+		}
+
+		else if (resultCode == RESULT_OK) {
+			String targetName = data.getStringExtra("nameOfNewTarget");
 			targets[count] = new Target(targetName);
 
 			Log.e("TargetsActivity", "onActivityResult 1, targetName="
@@ -123,7 +129,8 @@ public class TargetsActivity extends Activity {
 			// button2: stop
 			ImageButton btStop = new ImageButton(this);
 			btStop.setTag(count);
-			btStop.setImageResource(R.drawable.btn_default);
+			// btStop.setImageResource(R.drawable.btn_default);
+			btStop.setImageResource(android.R.drawable.btn_default);
 			btStop.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 					/*
@@ -145,7 +152,7 @@ public class TargetsActivity extends Activity {
 			// button3: show detail (debug)
 			ImageButton btDebug = new ImageButton(this);
 			btDebug.setTag(count);
-			btDebug.setImageResource(R.drawable.btn_default);
+			btDebug.setImageResource(android.R.drawable.btn_default);
 			btDebug.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 					String s;
@@ -173,8 +180,8 @@ public class TargetsActivity extends Activity {
 					String time = String.valueOf(sum / 3600000) + "h"
 							+ String.valueOf((sum % 3600000) / 60000) + "m"
 							+ String.valueOf((sum % 60000) / 1000) + "s";
-					new AlertDialog.Builder(TargetsActivity.this).setMessage(time)
-							.setTitle("total time").setCancelable(true)
+					new AlertDialog.Builder(TargetsActivity.this).setMessage(
+							time).setTitle("total time").setCancelable(true)
 							.setNeutralButton(android.R.string.ok,
 									new DialogInterface.OnClickListener() {
 										public void onClick(

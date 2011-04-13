@@ -2,4 +2,5 @@
 <resources>
     <string name="hello">Hello World, MainActivity2!</string>
     <string name="app_name">LifeTracker</string>
+    <string name="target_name_default">new!!!</string>
 </resources>

@@ -1,6 +1,8 @@
 package com.hexun.eniu.lifetracker.activities;
 
-import android.R;
+//import android.R;
+import com.hexun.eniu.lifetracker.R;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,11 +24,12 @@ public class NewTargetActivity extends Activity {
 
 		// 1. name
 		final EditText name = new EditText(this);
-		name.setText("enter target name here");
+		// name.setText("new");
+		name.setText(getResources().getText(R.string.target_name_default));
 
 		// 2. ok button
 		ImageButton btOk = new ImageButton(this);
-		btOk.setImageResource(R.drawable.btn_default);
+		btOk.setImageResource(android.R.drawable.btn_default);
 		btOk.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				// Intent intent = getIntent();
@@ -54,4 +57,34 @@ public class NewTargetActivity extends Activity {
 
 		// 3. approximate time (optional)
 	}
+
+	// @Override
+	// public void onActivityResult(int requestCode, int resultCode, Intent
+	// data) {
+	// super.onActivityResult(requestCode, resultCode, data);
+	//	  
+	//	  
+	// // switch(requestCode) {
+	// // case (STATIC_INTEGER_VALUE) : {
+	// // if (resultCode == Activity.RESULT_OK) {
+	// // int tabIndex = data.getIntExtra(PUBLIC_STATIC_STRING_IDENTIFIER);
+	// // // TODO Switch tabs using the index.
+	// // }
+	// // break;
+	// // }
+	// // }
+	// }
+
+	@Override
+	public void onBackPressed() {
+//		try {
+//			foo();
+//		} catch (Exception e) {
+//			handleException(e);
+//		}
+		Intent intent = new Intent();
+		setResult(RESULT_CANCELED, intent); // this will not return!
+		finish();
+	}
+
 }
