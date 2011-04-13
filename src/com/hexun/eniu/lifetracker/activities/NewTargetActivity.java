@@ -77,11 +77,6 @@ public class NewTargetActivity extends Activity {
 
 	@Override
 	public void onBackPressed() {
-//		try {
-//			foo();
-//		} catch (Exception e) {
-//			handleException(e);
-//		}
 		Intent intent = new Intent();
 		setResult(RESULT_CANCELED, intent); // this will not return!
 		finish();
