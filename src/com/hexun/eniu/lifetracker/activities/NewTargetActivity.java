@@ -19,8 +19,17 @@ public class NewTargetActivity extends Activity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.newtarget);
 
-		mainContainer = new LinearLayout(this);
+		LinearLayout m = (LinearLayout) NewTargetActivity.this
+				.findViewById(R.id.newtarget);
+
+//		if (m == null) {
+//			Log.e("null", "null");
+//		} else {
+//			Log.e("onCreate", m.toString());
+//		}
+		// System.out.println(m.getOrientation());
 
 		// 1. name
 		final EditText name = new EditText(this);
@@ -29,7 +38,7 @@ public class NewTargetActivity extends Activity {
 
 		// 2. ok button
 		ImageButton btOk = new ImageButton(this);
-		btOk.setImageResource(android.R.drawable.btn_default);
+		btOk.setImageResource(R.drawable.newtarget_add);
 		btOk.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				// Intent intent = getIntent();
@@ -50,12 +59,18 @@ public class NewTargetActivity extends Activity {
 			}
 		});
 
-		mainContainer.addView(name);
-		mainContainer.addView(btOk);
+		m.addView(name);
+		m.addView(btOk);
 
-		setContentView(mainContainer);
+		// other methods:
+		// LinearLayout ll = (LinearLayout) a.findViewById(R.id.content2);
+		// ViewInflate vi = (ViewInflate)
+		// a.getSystemService(Context.INFLATE_SERVICE);
+		// View vv = vi.inflate(R.layout.mynewxmllayout, null, null);
+		// ll.addView(vv, new
+		// LinearLayout.LayoutParams(ll.getLayoutParams().width,
+		// ll.getLayoutParams().height));
 
-		// 3. approximate time (optional)
 	}
 
 	// @Override
