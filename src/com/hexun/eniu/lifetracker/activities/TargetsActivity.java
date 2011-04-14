@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -76,7 +77,6 @@ public class TargetsActivity extends Activity {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		Log.e("TargetsActivity", "onActivityResult 0");
-		
 
 		if (resultCode == RESULT_CANCELED) {
 
@@ -94,6 +94,9 @@ public class TargetsActivity extends Activity {
 
 			TextView tv = new TextView(this);
 			tv.setText(targetName);
+			tv.setTextSize(15.0f);
+			tv.setTextColor(Color.WHITE);
+			tv.setWidth(100);
 
 			Log.e("TargetsActivity", "onActivityResult 2");
 
@@ -102,6 +105,8 @@ public class TargetsActivity extends Activity {
 			btToggle.setText("Ready");
 			btToggle.setTextOn("Running");
 			btToggle.setTextOff("Paused");
+			btToggle.setMinimumWidth(70);
+			btToggle.setWidth(70);
 			// btToggle.setImageResource(R.drawable.btn_default);
 			btToggle.setTag(count);
 			btToggle.setOnClickListener(new OnClickListener() {
@@ -110,12 +115,12 @@ public class TargetsActivity extends Activity {
 					Log.e("TargetsActivity", "toggle on click,id=" + id);
 					if (targets[id].getState() == Target.STATE_CREATED
 							|| targets[id].getState() == Target.STATE_PAUSED) {
-						targets[id].getStartTime().add(new Date());
+						targets[id].getStartTime().add(new Date().getTime());
 						Log.e("TargetsActivity", "new start time added: "
 								+ new Date().getTime());
 						targets[id].setState(Target.STATE_RUNNING);
 					} else if (targets[id].getState() == Target.STATE_RUNNING) {
-						targets[id].getEndTime().add(new Date());
+						targets[id].getEndTime().add(new Date().getTime());
 						targets[id].setState(Target.STATE_PAUSED);
 						Log.e("TargetsActivity", "new pause time added: "
 								+ new Date().getTime());
@@ -130,7 +135,7 @@ public class TargetsActivity extends Activity {
 			ImageButton btStop = new ImageButton(this);
 			btStop.setTag(count);
 			// btStop.setImageResource(R.drawable.btn_default);
-			btStop.setImageResource(android.R.drawable.btn_default);
+			btStop.setImageResource(R.drawable.targets_entry_stop);
 			btStop.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 					/*
@@ -138,21 +143,33 @@ public class TargetsActivity extends Activity {
 					 * 
 					 * }
 					 */
-					int id = (Integer) v.getTag();
-					targets[id].getEndTime().add(new Date());
-					targets[id].setState(Target.STATE_ENDED);
 
-					Log.e("TargetsActivity", "new end time added: "
-							+ new Date().toString());
+					// int id = (Integer) v.getTag();
+					// targets[id].getEndTime().add(new Date().getTime());
+					// targets[id].setState(Target.STATE_ENDED);
+					//
+					// Log.e("TargetsActivity", "new end time added: "
+					// + new Date().toString());
 				}
 			});
 
 			Log.e("TargetsActivity", "onActivityResult 4");
 
-			// button3: show detail (debug)
+			// button3: delete
+			ImageButton btDelete = new ImageButton(this);
+			btDelete.setTag(count);
+			// btStop.setImageResource(R.drawable.btn_default);
+			btDelete.setImageResource(R.drawable.targets_entry_delete);
+			btDelete.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+
+				}
+			});
+
+			// button4: show detail (debug)
 			ImageButton btDebug = new ImageButton(this);
 			btDebug.setTag(count);
-			btDebug.setImageResource(android.R.drawable.btn_default);
+			btDebug.setImageResource(R.drawable.targets_entry_info);
 			btDebug.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 					String s;
@@ -162,18 +179,16 @@ public class TargetsActivity extends Activity {
 					if (targets[id].getStartTime().size() > targets[id]
 							.getEndTime().size()) {
 						for (i = 0; i < targets[id].getEndTime().size(); i++) {
-							sum += targets[id].getEndTime().get(i).getTime()
-									- targets[id].getStartTime().get(i)
-											.getTime();
+							sum += targets[id].getEndTime().get(i)
+									- targets[id].getStartTime().get(i);
 						}
 						sum += new Date().getTime()
-								- targets[id].getStartTime().get(i).getTime();
+								- targets[id].getStartTime().get(i);
 
 					} else {
 						for (i = 0; i < targets[id].getEndTime().size(); i++) {
-							sum += targets[id].getEndTime().get(i).getTime()
-									- targets[id].getStartTime().get(i)
-											.getTime();
+							sum += targets[id].getEndTime().get(i)
+									- targets[id].getStartTime().get(i);
 						}
 					}
 
@@ -196,6 +211,7 @@ public class TargetsActivity extends Activity {
 			ll.addView(tv);
 			ll.addView(btToggle);
 			ll.addView(btStop);
+			ll.addView(btDelete);
 			ll.addView(btDebug);
 
 			targetContainers[count] = ll;

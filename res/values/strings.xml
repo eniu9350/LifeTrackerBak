@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, MainActivity2!</string>
+    <string name="hello">Track your life!</string>
     <string name="app_name">LifeTracker</string>
     <string name="target_name_default"></string>
     <string name="tempstr">text in newtarget activity</string>

@@ -9,8 +9,8 @@ public class Target {
 	public Target(String name) {
 		this.name = name;
 		this.state = STATE_CREATED;
-		startTime = new ArrayList<Date>();
-		endTime = new ArrayList<Date>();
+		startTime = new ArrayList<Long>();
+		endTime = new ArrayList<Long>();
 	}
 
 	public static final int STATE_CREATED = 0;
@@ -21,9 +21,9 @@ public class Target {
 	private String name;
 	private int state; //
 
-	private Date createTime;
-	private List<Date> startTime;
-	private List<Date> endTime;
+	private Long createTime;
+	private List<Long> startTime;
+	private List<Long> endTime;
 
 	public int getState() {
 		return state;
@@ -43,27 +43,27 @@ public class Target {
 		this.name = name;
 	}
 
-	public Date getCreateTime() {
+	public long getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(Date createTime) {
+	public void setCreateTime(Long createTime) {
 		this.createTime = createTime;
 	}
 
-	public List<Date> getStartTime() {
+	public List<Long> getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(List<Date> startTime) {
+	public void setStartTime(List<Long> startTime) {
 		this.startTime = startTime;
 	}
 
-	public List<Date> getEndTime() {
+	public List<Long> getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(List<Date> endTime) {
+	public void setEndTime(List<Long> endTime) {
 		this.endTime = endTime;
 	}
 

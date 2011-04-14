@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TableLayout.LayoutParams;
 
 public class NewTargetActivity extends Activity {
 
@@ -24,16 +25,20 @@ public class NewTargetActivity extends Activity {
 		LinearLayout m = (LinearLayout) NewTargetActivity.this
 				.findViewById(R.id.newtarget);
 
-//		if (m == null) {
-//			Log.e("null", "null");
-//		} else {
-//			Log.e("onCreate", m.toString());
-//		}
+		// if (m == null) {
+		// Log.e("null", "null");
+		// } else {
+		// Log.e("onCreate", m.toString());
+		// }
 		// System.out.println(m.getOrientation());
 
 		// 1. name
 		final EditText name = new EditText(this);
 		// name.setText("new");
+		name.setSingleLine(true);
+		name.setWidth(170);
+		//name.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
+		//		LayoutParams.WRAP_CONTENT));
 		name.setText(getResources().getText(R.string.target_name_default));
 
 		// 2. ok button

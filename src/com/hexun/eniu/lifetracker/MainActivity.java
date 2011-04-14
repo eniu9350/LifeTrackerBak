@@ -28,8 +28,8 @@ public class MainActivity extends Activity {
 				, 1 // item id
 				, 0 // order
 				, "target list"); // title
-		menu.add(0, 2, 1, "item2");
-		menu.add(0, 3, 2, "item3");
+		menu.add(0, 2, 1, "...");
+		menu.add(0, 3, 2, "...");
 		// It is important to return true to see the menu
 
 		return true;
