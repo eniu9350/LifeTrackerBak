@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/newtarget" android:orientation="horizontal"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+	<!--
+
+		<Button id="@+id/button1" android:text="Label"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" /> <Button id="@+id/button2"
+		android:text="Label" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:typeface="serif" />
+		<Button id="@+id/button3" android:text="Label"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	-->
+</LinearLayout>
