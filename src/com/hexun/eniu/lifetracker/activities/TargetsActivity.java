@@ -105,8 +105,8 @@ public class TargetsActivity extends Activity {
 			btToggle.setText("Ready");
 			btToggle.setTextOn("Running");
 			btToggle.setTextOff("Paused");
-			btToggle.setMinimumWidth(70);
-			btToggle.setWidth(70);
+			btToggle.setMinimumWidth(120);
+			btToggle.setWidth(120);
 			// btToggle.setImageResource(R.drawable.btn_default);
 			btToggle.setTag(count);
 			btToggle.setOnClickListener(new OnClickListener() {
