@@ -19,16 +19,37 @@ public final class R {
         public static final int targets_entry_stop=0x7f020005;
     }
     public static final class id {
-        public static final int newtarget=0x7f050000;
+        public static final int SerialMain_btStart=0x7f050009;
+        public static final int SerialMain_etTargetName=0x7f050008;
+        public static final int SerialMain_layout_main=0x7f050005;
+        public static final int SerialMain_layout_timer=0x7f05000a;
+        public static final int SerialMain_layout_wrapper1=0x7f050007;
+        public static final int SerialMain_tvPrompt=0x7f050006;
+        public static final int SerialTimer_btStop=0x7f05000d;
+        public static final int SerialTimer_crMain=0x7f05000c;
+        public static final int SerialTimer_tvTargetName=0x7f05000b;
+        public static final int main_btModeC=0x7f050002;
+        public static final int main_btModeS=0x7f050001;
+        public static final int main_btSetting=0x7f050003;
+        public static final int my_tv=0x7f050000;
+        public static final int newtarget=0x7f050004;
     }
     public static final class layout {
         public static final int main=0x7f030000;
         public static final int newtarget=0x7f030001;
+        public static final int serial_main=0x7f030002;
+        public static final int serial_timer=0x7f030003;
     }
     public static final class string {
-        public static final int app_name=0x7f040001;
+        /**  SerialMain 
+         */
+        public static final int SerialMain_tvPrompt=0x7f040007;
+        public static final int app_name=0x7f040004;
         public static final int hello=0x7f040000;
-        public static final int target_name_default=0x7f040002;
-        public static final int tempstr=0x7f040003;
+        public static final int main_btModeC=0x7f040002;
+        public static final int main_btModeS=0x7f040001;
+        public static final int main_btSetting=0x7f040003;
+        public static final int target_name_default=0x7f040005;
+        public static final int tempstr=0x7f040006;
     }
 }

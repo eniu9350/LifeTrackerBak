@@ -6,7 +6,7 @@
 
 	<application android:icon="@drawable/icon" android:label="@string/app_name">
 	
-		<activity android:name=".MainActivity" android:label="@string/app_name">
+		<activity android:name=".activities.MainActivity" android:label="@string/app_name">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
@@ -25,6 +25,21 @@
 			<intent-filter>
 				<action
 					android:name="com.hexun.eniu.lifetracker.intent.action.NewTargetActivity" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+		
+		<!-- serial -->
+		<activity android:name=".activities.serial.SerialMainActivity" android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.serial.SerialMainActivity" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+		
+		<activity android:name=".activities.serial.SerialTimerActivity" android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.serial.SerialTimerActivity" />
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
 		</activity>

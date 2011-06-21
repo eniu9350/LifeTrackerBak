@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Track your life!</string>
-    <string name="app_name">LifeTracker</string>
-    <string name="target_name_default"></string>
-    <string name="tempstr">text in newtarget activity</string>
+	<string name="hello">Track your life continue 4!</string>
+	<string name="main_btModeS">Serial Mode</string>
+	<string name="main_btModeC">Concurrent Mode</string>
+	<string name="main_btSetting">Setting</string>
+	<string name="app_name">LifeTracker</string>
+	<string name="target_name_default"></string>
+	<string name="tempstr">text in new target activity</string>
+	<!-- SerialMain -->
+	<string name="SerialMain_tvPrompt">What do u want to do next?</string>
 </resources>
