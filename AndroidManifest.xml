@@ -5,41 +5,75 @@
 	<uses-sdk android:minSdkVersion="8" />
 
 	<application android:icon="@drawable/icon" android:label="@string/app_name">
-	
-		<activity android:name=".activities.MainActivity" android:label="@string/app_name">
+
+		<activity android:name=".activities.MainActivity"
+			android:label="@string/app_name">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		
+
 		<activity android:name=".activities.TargetsActivity">
 			<intent-filter>
-				<action
-					android:name="com.hexun.eniu.lifetracker.intent.action.TargetsActivity" />
+				<action android:name="com.hexun.eniu.lifetracker.intent.action.TargetsActivity" />
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
 		</activity>
-		
+
 		<activity android:name=".activities.NewTargetActivity">
 			<intent-filter>
-				<action
-					android:name="com.hexun.eniu.lifetracker.intent.action.NewTargetActivity" />
+				<action android:name="com.hexun.eniu.lifetracker.intent.action.NewTargetActivity" />
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
 		</activity>
-		
+
 		<!-- serial -->
-		<activity android:name=".activities.serial.SerialMainActivity" android:label="@string/app_name">
+		<activity android:name=".activities.serial.SerialMainActivity"
+			android:label="@string/app_name">
 			<intent-filter>
 				<action android:name="android.intent.action.serial.SerialMainActivity" />
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
 		</activity>
-		
-		<activity android:name=".activities.serial.SerialTimerActivity" android:label="@string/app_name">
+
+		<activity android:name=".activities.serial.SerialTimerActivity"
+			android:label="@string/app_name">
 			<intent-filter>
 				<action android:name="android.intent.action.serial.SerialTimerActivity" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+
+		<!-- summary -->
+		<activity android:name=".activities.summary.SummaryMainActivity"
+			android:label="@string/app_name" android:theme="@android:style/Theme.NoTitleBar">
+			<intent-filter>
+				<action android:name="android.intent.action.summary.SummaryMainActivity" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name=".activities.summary.tabs.SummaryDayActivity"
+			android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.summary.tabs.SummaryDayActivity" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+		
+		<activity android:name=".activities.summary.tabs.SummaryMonthActivity"
+			android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.summary.tabs.SummaryMonthActivity" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+		
+		<activity android:name=".activities.summary.tabs.SummaryCustomActivity"
+			android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.summary.tabs.SummaryCustomActivity" />
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
 		</activity>

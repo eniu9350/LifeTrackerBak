@@ -12,22 +12,26 @@ public final class R {
     }
     public static final class drawable {
         public static final int android_focused=0x7f020000;
-        public static final int icon=0x7f020001;
-        public static final int newtarget_add=0x7f020002;
-        public static final int targets_entry_delete=0x7f020003;
-        public static final int targets_entry_info=0x7f020004;
-        public static final int targets_entry_stop=0x7f020005;
+        public static final int ic_tab_artists_grey=0x7f020001;
+        public static final int ic_tab_artists_white=0x7f020002;
+        public static final int ic_tab_summary_main=0x7f020003;
+        public static final int icon=0x7f020004;
+        public static final int newtarget_add=0x7f020005;
+        public static final int targets_entry_delete=0x7f020006;
+        public static final int targets_entry_info=0x7f020007;
+        public static final int targets_entry_stop=0x7f020008;
     }
     public static final class id {
         public static final int SerialMain_btStart=0x7f050009;
+        public static final int SerialMain_btSummary=0x7f05000a;
         public static final int SerialMain_etTargetName=0x7f050008;
         public static final int SerialMain_layout_main=0x7f050005;
-        public static final int SerialMain_layout_timer=0x7f05000a;
+        public static final int SerialMain_layout_timer=0x7f05000b;
         public static final int SerialMain_layout_wrapper1=0x7f050007;
         public static final int SerialMain_tvPrompt=0x7f050006;
-        public static final int SerialTimer_btStop=0x7f05000d;
-        public static final int SerialTimer_crMain=0x7f05000c;
-        public static final int SerialTimer_tvTargetName=0x7f05000b;
+        public static final int SerialTimer_btStop=0x7f05000e;
+        public static final int SerialTimer_crMain=0x7f05000d;
+        public static final int SerialTimer_tvTargetName=0x7f05000c;
         public static final int main_btModeC=0x7f050002;
         public static final int main_btModeS=0x7f050001;
         public static final int main_btSetting=0x7f050003;
@@ -39,6 +43,7 @@ public final class R {
         public static final int newtarget=0x7f030001;
         public static final int serial_main=0x7f030002;
         public static final int serial_timer=0x7f030003;
+        public static final int summary_main=0x7f030004;
     }
     public static final class string {
         /**  SerialMain 
