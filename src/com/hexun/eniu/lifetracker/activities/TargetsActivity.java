@@ -1,9 +1,7 @@
 package com.hexun.eniu.lifetracker.activities;
 
-import java.util.Arrays;
 import java.util.Date;
 
-//import android.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
