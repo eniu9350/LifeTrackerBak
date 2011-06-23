@@ -1,12 +1,12 @@
 package com.hexun.eniu.lifetracker.activities.serial;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -16,28 +16,32 @@ import com.hexun.eniu.lifetracker.R;
 import com.hexun.eniu.lifetracker.persistence.DbManager;
 
 public class SerialTimerActivity extends Activity {
-	private DbManager dbm;
+	private SQLiteDatabase db;
+	private static String DBNAME = "test";
+	private static String TABLENAME = "LIFETRACKER_TARGET";
+	
+	
 	private Chronometer crono;
 
-	private String targetName ;
+	private String targetName;
 	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-//		if(dbm == null)	{ 
-			dbm = new DbManager(this);
-//		}
+
+		db = DbManager.getInstance(this, DBNAME).getDB();
 
 		setContentView(R.layout.serial_timer);
 
-//		new AlertDialog.Builder(this).setMessage("mymessage").setTitle("title")
-//				.setCancelable(true).setNeutralButton(android.R.string.cancel,
-//						new DialogInterface.OnClickListener() {
-//							public void onClick(DialogInterface dialog,
-//									int whichButton) {
-//							}
-//						}).show();
+		// new
+		// AlertDialog.Builder(this).setMessage("mymessage").setTitle("title")
+		// .setCancelable(true).setNeutralButton(android.R.string.cancel,
+		// new DialogInterface.OnClickListener() {
+		// public void onClick(DialogInterface dialog,
+		// int whichButton) {
+		// }
+		// }).show();
 
 		Intent intent = getIntent();
 		targetName = intent.getStringExtra("targetName");
@@ -53,11 +57,13 @@ public class SerialTimerActivity extends Activity {
 		Button stop = (Button) findViewById(R.id.SerialTimer_btStop);
 		stop.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
+
+//				ArrayList<ArrayList<Object>> l = dbm.getAllRowsAsArrays();
+//				Log.i("====before insert===", "count=" + l.size());
+
+//				dbm.addRow(targetName, "nothing");
+
 				
-				ArrayList<ArrayList<Object>> l = dbm.getAllRowsAsArrays();
-				Log.i("====before insert===", "count="+l.size());
-				
-				dbm.addRow(targetName, "nothing");
 				
 				
 				crono.stop();
@@ -65,6 +71,15 @@ public class SerialTimerActivity extends Activity {
 				long elapsedMillis = SystemClock.elapsedRealtime()
 						- crono.getBase();
 
+				//db op
+				 ContentValues cv=new ContentValues(); 
+				 cv.put("name", targetName); 
+				 cv.put("lasting", 50); 
+				 cv.put("created", 12313); 
+				 db.insert(TABLENAME, null, cv);
+				
+				
+				
 				Intent intent = new Intent();
 				intent.putExtra("msg", elapsedMillis);
 				setResult(Activity.RESULT_OK, intent);
@@ -79,4 +94,12 @@ public class SerialTimerActivity extends Activity {
 		crono.setBase(SystemClock.elapsedRealtime());
 		crono.start();
 	}
+	
+//	@Override
+//	protected void onDestroy() {
+//	    if (db!=null){
+//	        db.close();
+//	    }
+//	    super.onDestroy();
+//	}
 }
