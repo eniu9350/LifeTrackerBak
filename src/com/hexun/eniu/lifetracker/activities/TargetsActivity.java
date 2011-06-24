@@ -111,18 +111,18 @@ public class TargetsActivity extends Activity {
 				public void onClick(View v) {
 					int id = (Integer) v.getTag();
 					Log.e("TargetsActivity", "toggle on click,id=" + id);
-					if (targets[id].getState() == Target.STATE_CREATED
-							|| targets[id].getState() == Target.STATE_PAUSED) {
-						targets[id].getStartTime().add(new Date().getTime());
-						Log.e("TargetsActivity", "new start time added: "
-								+ new Date().getTime());
-						targets[id].setState(Target.STATE_RUNNING);
-					} else if (targets[id].getState() == Target.STATE_RUNNING) {
-						targets[id].getEndTime().add(new Date().getTime());
-						targets[id].setState(Target.STATE_PAUSED);
-						Log.e("TargetsActivity", "new pause time added: "
-								+ new Date().getTime());
-					}
+//					if (targets[id].getState() == Target.STATE_CREATED
+//							|| targets[id].getState() == Target.STATE_PAUSED) {
+//						targets[id].getStartTime().add(new Date().getTime());
+//						Log.e("TargetsActivity", "new start time added: "
+//								+ new Date().getTime());
+//						targets[id].setState(Target.STATE_RUNNING);
+//					} else if (targets[id].getState() == Target.STATE_RUNNING) {
+//						targets[id].getEndTime().add(new Date().getTime());
+//						targets[id].setState(Target.STATE_PAUSED);
+//						Log.e("TargetsActivity", "new pause time added: "
+//								+ new Date().getTime());
+//					}
 					Log.e("TargetsActivity", "toggle on click end");
 				}
 			});
@@ -174,21 +174,21 @@ public class TargetsActivity extends Activity {
 					int id = (Integer) v.getTag();
 					int i;
 					long sum = 0;
-					if (targets[id].getStartTime().size() > targets[id]
-							.getEndTime().size()) {
-						for (i = 0; i < targets[id].getEndTime().size(); i++) {
-							sum += targets[id].getEndTime().get(i)
-									- targets[id].getStartTime().get(i);
-						}
-						sum += new Date().getTime()
-								- targets[id].getStartTime().get(i);
-
-					} else {
-						for (i = 0; i < targets[id].getEndTime().size(); i++) {
-							sum += targets[id].getEndTime().get(i)
-									- targets[id].getStartTime().get(i);
-						}
-					}
+//					if (targets[id].getStartTime().size() > targets[id]
+//							.getEndTime().size()) {
+//						for (i = 0; i < targets[id].getEndTime().size(); i++) {
+//							sum += targets[id].getEndTime().get(i)
+//									- targets[id].getStartTime().get(i);
+//						}
+//						sum += new Date().getTime()
+//								- targets[id].getStartTime().get(i);
+//
+//					} else {
+//						for (i = 0; i < targets[id].getEndTime().size(); i++) {
+//							sum += targets[id].getEndTime().get(i)
+//									- targets[id].getStartTime().get(i);
+//						}
+//					}
 
 					String time = String.valueOf(sum / 3600000) + "h"
 							+ String.valueOf((sum % 3600000) / 60000) + "m"
@@ -233,9 +233,9 @@ public class TargetsActivity extends Activity {
 
 		} else if (item.getItemId() == 2) {
 			String s = "";
-			for (int i = 0; i < targets[0].getStartTime().size(); i++) {
-				s += targets[0].getStartTime().get(i).toString() + ", ";
-			}
+//			for (int i = 0; i < targets[0].getStartTime().size(); i++) {
+//				s += targets[0].getStartTime().get(i).toString() + ", ";
+//			}
 
 			new AlertDialog.Builder(this).setMessage(s).setTitle("temp title")
 					.setCancelable(true).setNeutralButton(
