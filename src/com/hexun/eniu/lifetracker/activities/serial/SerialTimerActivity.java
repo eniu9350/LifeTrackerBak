@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.hexun.eniu.lifetracker.R;
 import com.hexun.eniu.lifetracker.persistence.DbManager;
@@ -19,12 +20,10 @@ public class SerialTimerActivity extends Activity {
 	private SQLiteDatabase db;
 	private static String DBNAME = "test";
 	private static String TABLENAME = "LIFETRACKER_TARGET";
-	
-	
+
 	private Chronometer crono;
 
 	private String targetName;
-	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -43,6 +42,11 @@ public class SerialTimerActivity extends Activity {
 		// }
 		// }).show();
 
+		// setup ui component
+		ToggleButton tbResume = (ToggleButton) this
+				.findViewById(R.id.SerialTimer_tbResume);
+		tbResume.setChecked(true);
+
 		Intent intent = getIntent();
 		targetName = intent.getStringExtra("targetName");
 
@@ -58,28 +62,23 @@ public class SerialTimerActivity extends Activity {
 		stop.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
 
-//				ArrayList<ArrayList<Object>> l = dbm.getAllRowsAsArrays();
-//				Log.i("====before insert===", "count=" + l.size());
+				// ArrayList<ArrayList<Object>> l = dbm.getAllRowsAsArrays();
+				// Log.i("====before insert===", "count=" + l.size());
 
-//				dbm.addRow(targetName, "nothing");
+				// dbm.addRow(targetName, "nothing");
 
-				
-				
-				
 				crono.stop();
 
 				long elapsedMillis = SystemClock.elapsedRealtime()
 						- crono.getBase();
 
-				//db op
-				 ContentValues cv=new ContentValues(); 
-				 cv.put("name", targetName); 
-				 cv.put("lasting", 50); 
-				 cv.put("created", 12313); 
-				 db.insert(TABLENAME, null, cv);
-				
-				
-				
+				// db op
+				ContentValues cv = new ContentValues();
+				cv.put("name", targetName);
+				cv.put("lasting", 50);
+				cv.put("created", 12313);
+				db.insert(TABLENAME, null, cv);
+
 				Intent intent = new Intent();
 				intent.putExtra("msg", elapsedMillis);
 				setResult(Activity.RESULT_OK, intent);
@@ -94,12 +93,12 @@ public class SerialTimerActivity extends Activity {
 		crono.setBase(SystemClock.elapsedRealtime());
 		crono.start();
 	}
-	
-//	@Override
-//	protected void onDestroy() {
-//	    if (db!=null){
-//	        db.close();
-//	    }
-//	    super.onDestroy();
-//	}
+
+	// @Override
+	// protected void onDestroy() {
+	// if (db!=null){
+	// db.close();
+	// }
+	// super.onDestroy();
+	// }
 }

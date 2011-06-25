@@ -29,8 +29,9 @@ public final class R {
         public static final int SerialMain_layout_timer=0x7f05000b;
         public static final int SerialMain_layout_wrapper1=0x7f050007;
         public static final int SerialMain_tvPrompt=0x7f050006;
-        public static final int SerialTimer_btStop=0x7f05000e;
+        public static final int SerialTimer_btStop=0x7f05000f;
         public static final int SerialTimer_crMain=0x7f05000d;
+        public static final int SerialTimer_tbResume=0x7f05000e;
         public static final int SerialTimer_tvTargetName=0x7f05000c;
         public static final int main_btModeC=0x7f050002;
         public static final int main_btModeS=0x7f050001;

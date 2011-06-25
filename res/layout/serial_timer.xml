@@ -5,9 +5,16 @@
 	<TextView android:id="@+id/SerialTimer_tvTargetName"
 		android:text="" android:layout_height="wrap_content"
 		android:layout_width="wrap_content"></TextView>
-	<Chronometer android:id="@+id/SerialTimer_crMain"
-		android:layout_height="wrap_content" android:layout_width="wrap_content"
-		android:textStyle="bold" android:textSize="64sp" />
+	<LinearLayout android:orientation="horizontal"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<Chronometer android:id="@+id/SerialTimer_crMain"
+			android:layout_height="wrap_content" android:layout_width="wrap_content"
+			android:textStyle="bold" android:textSize="64sp" />
+		<ToggleButton android:id="@+id/SerialTimer_tbResume"
+			android:layout_height="wrap_content" android:layout_width="wrap_content"
+			android:text="pause" android:textOn="pause" android:textOff="start" />
+	</LinearLayout>
+
 	<Button android:text="Stop" android:id="@+id/SerialTimer_btStop"
 		android:layout_width="80dp" android:width="20px"
 		android:layout_height="wrap_content"></Button>
