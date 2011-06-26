@@ -44,6 +44,20 @@
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
 		</activity>
+		<activity android:name=".activities.serial.tabs.SerialTabsRunningActivity"
+			android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.serial.tabs.SerialTabsRunningActivity" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+		<activity android:name=".activities.serial.tabs.SerialTabsAllActivity"
+			android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.serial.tabs.SerialTabsAllActivity" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
 
 		<!-- summary -->
 		<activity android:name=".activities.summary.SummaryMainActivity"

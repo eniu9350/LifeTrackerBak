@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="hello">Track your life continue 4!</string>
+	<string name="hello">Track your life continue 6!</string>
 	<string name="main_btModeS">Serial Mode</string>
 	<string name="main_btModeC">Concurrent Mode</string>
 	<string name="main_btSetting">Setting</string>
@@ -9,4 +9,6 @@
 	<string name="tempstr">text in new target activity</string>
 	<!-- SerialMain -->
 	<string name="SerialMain_tvPrompt">What do u want to do next?</string>
+	<string name="SerialMain_tab_title_running">tRUNNING</string>
+	<string name="SerialMain_tab_title_all">tALL</string>
 </resources>

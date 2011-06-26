@@ -1,5 +1,7 @@
 package com.hexun.eniu.lifetracker.activities.serial;
 
+import java.util.Date;
+
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -7,13 +9,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.hexun.eniu.lifetracker.R;
+import com.hexun.eniu.lifetracker.activities.mem.Cache;
 import com.hexun.eniu.lifetracker.persistence.DbManager;
 
 public class SerialTimerActivity extends Activity {
@@ -31,7 +36,7 @@ public class SerialTimerActivity extends Activity {
 
 		db = DbManager.getInstance(this, DBNAME).getDB();
 
-		setContentView(R.layout.serial_timer);
+		setContentView(R.layout.serial_tabs_running_countdown);
 
 		// new
 		// AlertDialog.Builder(this).setMessage("mymessage").setTitle("title")
@@ -46,6 +51,19 @@ public class SerialTimerActivity extends Activity {
 		ToggleButton tbResume = (ToggleButton) this
 				.findViewById(R.id.SerialTimer_tbResume);
 		tbResume.setChecked(true);
+		tbResume
+				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+					@Override
+					public void onCheckedChanged(CompoundButton cmpbt,
+							boolean bChecked) {
+						// TODO Auto-generated method stub
+						if (bChecked) {
+							Cache.addSerialTargetEntry(new Date().getTime());
+						}
+					}
+
+				});
 
 		Intent intent = getIntent();
 		targetName = intent.getStringExtra("targetName");

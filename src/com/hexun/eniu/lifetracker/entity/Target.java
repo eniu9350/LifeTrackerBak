@@ -33,6 +33,16 @@ public class Target {
 		tes.add(te);
 	}
 
+	
+
+	public List<TargetEntry> getTes() {
+		return tes;
+	}
+
+	public void setTes(List<TargetEntry> tes) {
+		this.tes = tes;
+	}
+
 	public TargetEntry getLastTargetEntry() {
 		return tes.get(tes.size() - 1);
 	}

@@ -22,31 +22,52 @@ public final class R {
         public static final int targets_entry_stop=0x7f020008;
     }
     public static final class id {
-        public static final int SerialMain_btStart=0x7f050009;
-        public static final int SerialMain_btSummary=0x7f05000a;
-        public static final int SerialMain_etTargetName=0x7f050008;
-        public static final int SerialMain_layout_main=0x7f050005;
-        public static final int SerialMain_layout_timer=0x7f05000b;
-        public static final int SerialMain_layout_wrapper1=0x7f050007;
-        public static final int SerialMain_tvPrompt=0x7f050006;
-        public static final int SerialTimer_btStop=0x7f05000f;
-        public static final int SerialTimer_crMain=0x7f05000d;
-        public static final int SerialTimer_tbResume=0x7f05000e;
-        public static final int SerialTimer_tvTargetName=0x7f05000c;
+        public static final int SerialMain_btStart=0x7f05000c;
+        public static final int SerialMain_btSummary=0x7f05000d;
+        public static final int SerialMain_etTargetName=0x7f05000b;
+        public static final int SerialMain_layout_main=0x7f050008;
+        public static final int SerialMain_layout_timer=0x7f05000f;
+        public static final int SerialMain_layout_wrapper1=0x7f05000a;
+        public static final int SerialMain_tvLastTargetStat=0x7f050014;
+        public static final int SerialMain_tvPrompt=0x7f050009;
+        public static final int SerialTimer_btStop=0x7f050013;
+        public static final int SerialTimer_crMain=0x7f050011;
+        public static final int SerialTimer_tbResume=0x7f050012;
+        public static final int SerialTimer_tvTargetName=0x7f050010;
+        public static final int SummaryDay_lv=0x7f050015;
+        public static final int SummaryDay_row_mainlinlo=0x7f050016;
+        public static final int SummaryDay_row_sublinlo1=0x7f050018;
+        public static final int SummaryDay_row_sublinlo2=0x7f05001b;
+        public static final int SummaryDay_row_tvCreated=0x7f05001a;
+        public static final int SummaryDay_row_tvCreatedTitle=0x7f050019;
+        public static final int SummaryDay_row_tvSpec=0x7f05001d;
+        public static final int SummaryDay_row_tvSpecTitle=0x7f05001c;
+        public static final int SummaryDay_row_tvTargetName=0x7f050017;
+        public static final int layout_tab_one=0x7f050007;
         public static final int main_btModeC=0x7f050002;
         public static final int main_btModeS=0x7f050001;
         public static final int main_btSetting=0x7f050003;
         public static final int my_tv=0x7f050000;
         public static final int newtarget=0x7f050004;
+        public static final int tabone2=0x7f05000e;
+        public static final int tabsLayout=0x7f050005;
+        public static final int tabsText=0x7f050006;
     }
     public static final class layout {
         public static final int main=0x7f030000;
         public static final int newtarget=0x7f030001;
         public static final int serial_main=0x7f030002;
-        public static final int serial_timer=0x7f030003;
-        public static final int summary_main=0x7f030004;
+        public static final int serial_main_tab=0x7f030003;
+        public static final int serial_tabs_running=0x7f030004;
+        public static final int serial_tabs_running_countdown=0x7f030005;
+        public static final int serial_tabs_running_input=0x7f030006;
+        public static final int summary_day=0x7f030007;
+        public static final int summary_day_row=0x7f030008;
+        public static final int summary_main=0x7f030009;
     }
     public static final class string {
+        public static final int SerialMain_tab_title_all=0x7f040009;
+        public static final int SerialMain_tab_title_running=0x7f040008;
         /**  SerialMain 
          */
         public static final int SerialMain_tvPrompt=0x7f040007;

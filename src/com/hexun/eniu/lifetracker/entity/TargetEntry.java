@@ -1,14 +1,18 @@
 package com.hexun.eniu.lifetracker.entity;
 
-import java.util.Date;
 
 public class TargetEntry {
 	private int id;
 	private int tid;
-	private Date startTime;
-	private Date stopTime;
+	private long startTime;
+	private long stopTime;
 	private boolean bFirst;
 	private boolean bLast;
+
+	public TargetEntry() {
+		bFirst = false;
+		bLast = false;
+	}
 
 	public int getId() {
 		return id;
@@ -26,19 +30,19 @@ public class TargetEntry {
 		this.tid = tid;
 	}
 
-	public Date getStartTime() {
+	public long getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Date startTime) {
+	public void setStartTime(long startTime) {
 		this.startTime = startTime;
 	}
 
-	public Date getStopTime() {
+	public long getStopTime() {
 		return stopTime;
 	}
 
-	public void setStopTime(Date stopTime) {
+	public void setStopTime(long stopTime) {
 		this.stopTime = stopTime;
 	}
 
