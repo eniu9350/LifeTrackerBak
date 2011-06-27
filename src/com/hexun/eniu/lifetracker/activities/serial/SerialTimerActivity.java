@@ -1,15 +1,11 @@
 package com.hexun.eniu.lifetracker.activities.serial;
 
-import java.util.Date;
-
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -18,7 +14,6 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.hexun.eniu.lifetracker.R;
-import com.hexun.eniu.lifetracker.activities.mem.Cache;
 import com.hexun.eniu.lifetracker.persistence.DbManager;
 
 public class SerialTimerActivity extends Activity {
@@ -59,7 +54,7 @@ public class SerialTimerActivity extends Activity {
 							boolean bChecked) {
 						// TODO Auto-generated method stub
 						if (bChecked) {
-							Cache.addSerialTargetEntry(new Date().getTime());
+//							Cache.addSerialTargetEntry(new Date().getTime());
 						}
 					}
 

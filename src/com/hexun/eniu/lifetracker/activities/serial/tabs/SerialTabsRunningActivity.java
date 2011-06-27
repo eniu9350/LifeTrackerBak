@@ -5,7 +5,6 @@ import java.util.Date;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +19,7 @@ import android.widget.ViewFlipper;
 import com.hexun.eniu.lifetracker.R;
 import com.hexun.eniu.lifetracker.activities.mem.Cache;
 import com.hexun.eniu.lifetracker.activities.serial.SerialTimerActivity;
+import com.hexun.eniu.lifetracker.entity.Target;
 
 public class SerialTabsRunningActivity extends Activity {
 
@@ -32,10 +32,17 @@ public class SerialTabsRunningActivity extends Activity {
 	private Chronometer crono;
 	private long lastPause;
 
+	private ToggleButton tbResume;
+
+	private Cache cache;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// setContentView(R.layout.serial_tabs_running);
+
+		// get cache
+		cache = new Cache(this);
 
 		flipper = new ViewFlipper(this);
 		addInputViewToFlipper(flipper);
@@ -86,12 +93,13 @@ public class SerialTabsRunningActivity extends Activity {
 						.findViewById(R.id.SerialMain_etTargetName);
 				targetName = et.getText().toString();
 
-				//clear edittext
+				// clear edittext
 				et.setText("");
-				
-				// db op
-				// Cache.setSerialTarget(et.getText().toString(), new Date(),
-				// 0);
+
+				// cache&db op
+				Target t = cache.getSerialTarget();
+				t.setName(et.getText().toString());
+				t.setCreated(new Date().getTime());
 
 				// Intent i = new Intent(SerialTabsRunningActivity.this,
 				// SerialTimerActivity.class);
@@ -126,35 +134,30 @@ public class SerialTabsRunningActivity extends Activity {
 
 		long elapsedMillis;
 
-		
-		
-		
-		//calc lasting time
-		ToggleButton tbResume = (ToggleButton) this
-				.findViewById(R.id.SerialTimer_tbResume);
+		// calc lasting time
+		tbResume = (ToggleButton) this.findViewById(R.id.SerialTimer_tbResume);
 		if (tbResume.getText().toString().equalsIgnoreCase("start")) {
 			// paused
 			elapsedMillis = lastPause - crono.getBase();
-		} else {	//running
-			elapsedMillis = SystemClock.elapsedRealtime() - crono.getBase();
+		} else { // running
+			elapsedMillis = new Date().getTime() - crono.getBase();
 			crono.stop();
 		}
 
-//		long elapsedMillis = SystemClock.elapsedRealtime() - crono.getBase();
+		// long elapsedMillis = SystemClock.elapsedRealtime() - crono.getBase();
 
-		
-		//show lasting time
+		// show lasting time
 		TextView tvLastTargetStat = (TextView) findViewById(R.id.SerialMain_tvLastTargetStat);
 		tvLastTargetStat.setText("last target (" + targetName + "): "
 				+ elapsedMillis + "ms");
 
-		//save lasting time
-//		 db op
-//		 ContentValues cv = new ContentValues();
-//		 cv.put("name", targetName);
-//		 cv.put("lasting", 50);
-//		 cv.put("created", 12313);
-//		 db.insert(TABLENAME, null, cv);
+		// save lasting time
+		// db op
+		// ContentValues cv = new ContentValues();
+		// cv.put("name", targetName);
+		// cv.put("lasting", 50);
+		// cv.put("created", 12313);
+		// db.insert(TABLENAME, null, cv);
 
 		// Intent intent = new Intent();
 		// intent.putExtra("msg", elapsedMillis);
@@ -164,42 +167,40 @@ public class SerialTabsRunningActivity extends Activity {
 
 	private void fromInputToCountDown() {
 		// cache op
-		Cache.addSerialTargetEntry(new Date().getTime());
+		long now = new Date().getTime();
+		cache.addSerialTargetEntry(now);
+		Log.i("====TabRunningActivity====fromInputToCountDown,start=", "" + now);
 
 		// setup ui component
-		final ToggleButton tbResume = (ToggleButton) this
-				.findViewById(R.id.SerialTimer_tbResume);
+		tbResume = (ToggleButton) this.findViewById(R.id.SerialTimer_tbResume);
 		tbResume.setChecked(true);
-		tbResume
-				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+		tbResume.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
-					@Override
-					public void onCheckedChanged(CompoundButton cmpbt,
-							boolean bChecked) {
-						// TODO Auto-generated method stub
-						if (bChecked) {
-							Log.i("===tbResume===changed !", "bChecked true");
-							Log.i("===bChecked=== text", tbResume.getText()
-									.toString());
-							long now = SystemClock.elapsedRealtime();
-							crono.setBase(crono.getBase() + now - lastPause);
-							crono.start();
+			@Override
+			public void onCheckedChanged(CompoundButton cmpbt, boolean bChecked) {
+				// TODO Auto-generated method stub
+				if (bChecked) { // to start
+					Log.i("===tbResume===changed !", "bChecked true");
+					Log.i("===bChecked=== text", tbResume.getText().toString());
+					long now = new Date().getTime();
+					crono.setBase(crono.getBase() + now - lastPause);
+					crono.start();
 
-							// cache op
-							Cache.addSerialTargetEntry(new Date().getTime());
-						} else {
-							Log.i("===bChecked=== text", tbResume.getText()
-									.toString());
-							lastPause = SystemClock.elapsedRealtime();
-							crono.stop();
+					// cache&db op
+					cache.addSerialTargetEntry(new Date().getTime());
+				} else { // to pause
+					Log.i("===bChecked=== text", tbResume.getText().toString());
+					lastPause = new Date().getTime();
+					crono.stop();
 
-							// cache op
-							Cache.getSerialTarget().getLastTargetEntry()
-									.setStopTime(lastPause);
-						}
-					}
+					// cache op
+					Log.i("====TabRunningActivity====stop=", "" + lastPause);
+					cache.getSerialTarget().getLastTargetEntry()
+							.setStopTime(lastPause);
+				}
+			}
 
-				});
+		});
 
 		Intent intent = getIntent();
 		String targetName = intent.getStringExtra("targetName");
@@ -215,11 +216,24 @@ public class SerialTabsRunningActivity extends Activity {
 		Button stop = (Button) findViewById(R.id.SerialTimer_btStop);
 		stop.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View view) {
-				ToggleButton tbResume = (ToggleButton) view.getRootView()
-						.findViewById(R.id.SerialTimer_tbResume);
+				// tbResume = (ToggleButton) view.getRootView()
+				// .findViewById(R.id.SerialTimer_tbResume);
 
-				// cache op
-				// mmm
+				// cache&db op
+				if (tbResume.getText().toString().equalsIgnoreCase("start")) {// paused
+					cache.getSerialTarget().getLastTargetEntry().setbLast(true);
+				} else {// running
+					cache.setLastTargetEntryStopTime(new Date().getTime(), true);
+				}
+				long lasting = 0;
+				for (int i = 0; i < cache.getSerialTarget().getTes().size(); i++) {
+					lasting += cache.getSerialTarget().getTes().get(i)
+							.getStopTime()
+							- cache.getSerialTarget().getTes().get(i)
+									.getStartTime();
+				}
+				cache.getSerialTarget().setLasting(lasting);
+				cache.saveSerialTargetToDB();
 
 				fromCountDownToInput();
 				flipper.showPrevious();
@@ -229,7 +243,8 @@ public class SerialTabsRunningActivity extends Activity {
 	}
 
 	private void startCrono(Chronometer crono) {
-		crono.setBase(SystemClock.elapsedRealtime());
+		// crono.setBase(SystemClock.elapsedRealtime());
+		crono.setBase(new Date().getTime());
 		crono.start();
 	}
 
@@ -307,5 +322,8 @@ public class SerialTabsRunningActivity extends Activity {
 	// break;
 	// }
 	// }
-
+	@Override
+	public void onDestroy() {
+		cache.clear();
+	}
 }

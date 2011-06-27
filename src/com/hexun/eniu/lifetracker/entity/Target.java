@@ -15,7 +15,7 @@ public class Target {
 
 	}
 
-	public Target(String name, Date created) {
+	public Target(String name, long created) {
 		this();
 		this.name = name;
 		this.created = created;
@@ -24,7 +24,7 @@ public class Target {
 
 	private int id;
 	private String name;
-	private Date created;
+	private long created;
 	private long lasting;
 
 	private List<TargetEntry> tes;
@@ -63,11 +63,11 @@ public class Target {
 		this.lasting = lasting;
 	}
 
-	public Date getCreated() {
+	public long getCreated() {
 		return created;
 	}
 
-	public void setCreated(Date created) {
+	public void setCreated(long created) {
 		this.created = created;
 	}
 

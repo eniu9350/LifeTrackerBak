@@ -49,7 +49,7 @@ public class SummaryDayAdapter extends BaseAdapter {
 
 		TextView tvCreated = (TextView) convertView
 				.findViewById(R.id.SummaryDay_row_tvCreated);
-		tvCreated.setText(t.getCreated().toLocaleString());
+		tvCreated.setText("" + t.getCreated());
 
 		TextView tvSpec = (TextView) convertView
 				.findViewById(R.id.SummaryDay_row_tvSpec);
